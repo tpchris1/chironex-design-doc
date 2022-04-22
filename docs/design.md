@@ -1,4 +1,6 @@
-# Documentation
+# Design
+*Design details and implementation of Chironex*
+
 
 
 class Message{

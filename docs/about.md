@@ -1,6 +1,10 @@
 # About
 
-Team Chironex with members:
+## Advisor
+- Prof. Dr. Gerald Friedland
+- Eleanor Cawthon
+  
+## Team members:
 - Po-Yu Chou
 - William Chen
 - Yi-Chun Chang

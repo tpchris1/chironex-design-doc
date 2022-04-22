@@ -15,6 +15,7 @@
     mkdocs.yml    # The configuration file.
     docs/
         index.md  # The documentation homepage.
-        documentation.md # Main place for doc text
+        usage.md # Usage
+        design.md # Implementation
         about.md # About
         ...       # Other markdown pages, images and other files.

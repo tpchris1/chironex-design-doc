@@ -1,6 +1,7 @@
 site_name: Chironex Design Doc
 nav:
     - Home: index.md
-    - Documentation: documentation.md
+    - Usage: usage.md
+    - Design: design.md
     - About: about.md
 theme: readthedocs
