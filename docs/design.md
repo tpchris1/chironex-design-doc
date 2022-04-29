@@ -1,8 +1,7 @@
-# Design
+# Design Details
 *Design details and implementation of Chironex*
-
  
-class Message{
+## class Message
 * Messages are left behind in each cell by Jellyfish
 ```
     int capacity;
