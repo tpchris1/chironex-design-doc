@@ -1,106 +1,138 @@
 # Design
 *Design details and implementation of Chironex*
 
-
-
+ 
 class Message{
-    /* Messages are left behind in each cell by Jellyfish */
-    int capacity = 0;
+* Messages are left behind in each cell by Jellyfish
+```
+    int capacity;
     int messages[]; // heapq with (score,weight) as element
+    
+    void update(score, weight); 
+    void get();
+```
+
 }
 
 class Cell{
-    int data[][]; // batch of data
-    Message messages[]; // outputs for several jellyfish (variable sized array)
+```
+    int X 
+    int y 
+    Message msg = Message(msg_capacity)
     
-    void append(int []); // append new message to messages
-    int [] yield(int []); // give (data, msg) of given coordinate
+    void update_msg(score, weight)
+    void get_msg()
+    void get_data()
+    
+```    
 }
 
 class Grid{
-    Cell cell[][];
-}
-
-class DNN {
-    double weights[];
-    double bias[];
+```
+    tuple shape # (4,3) row 4 col 3 
+    dict() grid 
+    int msg_capacity 
+    int n_features 
+    int n_classes 
     
-    void back_propagate(int [], int[]);
+    void read(data)
+    void get(coord)
+```
 }
 
 class Learner {
-    /* Machine Learner for each Jellyfish */
-    DNN network;
+* Machine Learner for each Jellyfish 
+ 
+``` 
+    int hidden_nodes
+    int batch_size
+    int n_iter
+    int verbose
+    int random_state
+    int lr
     
-    void fit(int [], int[]);
-    void predict(int []);
+    void forward(x);
+    void fit(X, y);
+    void predict(X);
+    void score(X, y);
+    void weight();
+    void set_weight(weight);
+    
+```
 }
 
-// void Converter() {
-//     /* Convert variable size input to fixed one*/
-// }
 
 class Jellyfish {
-    Learner leaner; // machine learner
-    Converter converter; // convert jellyfish messages to fixed size
+```
+    int n_features
+    int n_classes
+    Learner learner = TorchMLP(n_features, n_classes) // machine learner
+    
+    void interact(cell)
+    void leave_trace(X, y)
+    void score(X, y);
+    void predict(X);
+    
+    void merge(weight1, weight2, mode)
+```
+
 }
 
-struct Coordinate{
-    int x, y; // coordinate
+class logger{
+```
+    idx
+    jellyfish
+    scores
+```
 }
+
+class Metadata{
+```
+    entity
+    coord
+```
+}
+
 
 class Engine {
-    int max_iter;
-    int time; // time counter for each iteration
-    Jellyfish& swarm; // swarm of jellyfish
-    Coordinate coord[]; // all coordinate of jellyfish
-    Cell[] data; // 
+```
+    int grid_width 
+    int grid_height 
+    int max_iter 
+    int n_jellyfish
+    int msg_cap 
+    int time # iteration counter
+
+    train_data, test_data
+    X_test = test_data[:, :-1]
+    y_test = test_data[:, -1]
+    swarm = [] # array of jellyfish and their coordinates
+    ocean = Grid((self.grid_height, self.grid_width), self.msg_cap)
+    ocean.read(train_data)
+    int n_features 
+    int n_classes 
+
+
+    swarm = [
+        Metadata(Jellyfish(self.n_features, self.n_classes), \
+                gen_random_coord(self.grid_height, self.grid_width)) \
+
+
+    logger = [Logger(i, val.entity) for i, val in enumerate(self.swarm)]
+    eval_when = []
+    eval_mean = []
+    eval_std = []
+    agreement = [] # annotator's agreementＹ
     
+    void run()
+    void _run_one_step()
+    void _validate()
+    void _transition()
+    void plot_individual_result()
+    void plot_swarm_result()
     
-    void transition(void); // define how coordinate changes
-    void train(void); // train all jellyfish
-    
-    void train(void) {
-        for (auto jellyfish : swarm) {
-            auto coord = coord(jellyfish);
-            auto batch = data.yield(coord);
-            Message msg = jellyfish.fit(batch);
-            todo.push((msg, coord));
-        }
-        
-        while (!todo.empty()) {
-            msg, coord = todo.top();
-            todo.pop();
-            date[coord].append(msg);
-        }
-    }
+```
 }
 
-class Jellyfish:
-    def __init__(self):
-        self.converter = Converter(o_dim=1)
-        self.learner = MLPClassifier()
-        self.merge_functions = {"avg": merge_avg} 
 
-def merge(self, mode="avg", w1, w2):
-    return self.merge_functions[mode](w1,w2)
-
-def merge_avg(w1,w2):
-    result_weight = []
-    for m1, m2 in zip(w1[0],w2[0]):
-        result_weight.append((m1+m2)/2)
-    result_bias = []
-    for m1, m2 in zip(w1[1],w2[1]):
-        result_bias.append((m1+m2)/2)
-    
-    return (result_weight, result_bias)
-
-def interact(self,cell,):
-    X,y = cell.get_data()
-    msg = cell.get_msg()
-
-    if msg:
-
-    else:
-        self.learner.fit(X,y)
 
