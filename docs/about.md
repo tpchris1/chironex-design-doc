@@ -18,7 +18,8 @@
 - Semenov, A. (2018, August 31). How do jellyfish perceive the world? – The Helm Lab Blog. The Helm Lab Blog. Retrieved March 1, 2022, from https://jellybiologist.com/2018/08/31/how-do-jellyfish-see-the-world/
 - Bruijn, L. de. (2020, July 18). Inter-annotator agreement (IAA). Medium. Retrieved April 11, 2022, from https://towardsdatascience.com/inter-annotator-agreement-2f46c6d37bf3 
 - Inter annotator agreement - brandeis university. Inter annotator agreement. (2017, February 28). Retrieved April 11, 2022, from https://www.cs.brandeis.edu/~cs140b/CS140b_slides/CS140_Lect_7_InterAnnotatorAgreement.pdf
+- German, B.. (1987). Glass Identification. UCI Machine Learning Repository from https://archive-beta.ics.uci.edu/ml/datasets/glass+identification
 
 
-### Documentation
+### Documentation Tool
 Documentation based on [mkdocs.org](https://www.mkdocs.org).
