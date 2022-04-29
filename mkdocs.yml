@@ -4,4 +4,10 @@ nav:
     - Usage: usage.md
     - Design: design.md
     - About: about.md
-theme: readthedocs
+theme: material
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html

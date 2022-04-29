@@ -1,17 +1,19 @@
 # Usage
-*How to use Chironex*
+
 
 ## Introduction
 1. Currently Chironex can be used on any classification problem
 2. Divided into 2 parts:
     - Training and Plotting part
     - Integration with Atolla's environment
-3. Training and Plotting
-    - Simply train and test with dataset
-    - Plot the performance of Jellyfish
-4. Integration with Atolla's environment
-    - Trained Jellyfish act as critter brain in Atolla's environment
-    - Train and export weights of Jellyfish
+### Training and Plotting
+- Simply train and test with dataset
+- Plot the performance of Jellyfish
+### Integration with Atolla's environment
+- Trained Jellyfish act as critter brain in Atolla's environment
+- Train and export weights of Jellyfish
+
+---
 
 ## Dataset
 ### Training and Plotting
@@ -25,7 +27,10 @@
 1. When integrate with Atolla, the number of class should match the number of action in Atolla's settings
 2. Current setting of Atolla requires number of class >= 4
 3. A sample dataset `glass.csv` matches the requirement is provided in the repo 
-4. **Atolla did not implement the interface to use Chironex as critter**
+!!! warning
+    Atolla did not implement the interface to use Chironex as critter
+
+---
 
 ## How to use
 ### Training and Plotting
