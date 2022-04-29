@@ -343,51 +343,92 @@ Call outside class mutate function to mutate weight of current Jellyfish
 def mutate_weight()
 ```
 
-### Merge
-void merge(weight1, weight2, mode)
+## class Engine
+> - Engine class 
+> !!! note
+    `gen_random_coord` and `shuffle_n_partition` is implemented in the `engine.py` but is not a part of the class. 
 
-### Mutate
+
+### Parameter
+- `grid_width`: int, 
+- `grid_height`: int, 
+- `max_iter`: int,
+- `n_jellyfish`: int, 
+- `msg_cap`: int, 
+- `time`: int, iteration counter
+- `train_data`
+- `test_data`
+- `X_test`
+- `y_test`
+- `swarm` : array, array of jellyfish and their coordinates
+- `ocean` : Grid
+- `n_features`
+- `n_classes`
+- `eval_every`
+- `logger`
+- `eval_when`
+- `eval_mean`
+- `eval_std`
+- `agreement` : array, store annotator's agreement
+
+### Class Variable
+- `Metadata`:  
 
 
-### class Engine
+### Functions
+#### run
+```py
+"""
+
+""" 
+def run(verbose=False)
 ```
-    int grid_width 
-    int grid_height 
-    int max_iter 
-    int n_jellyfish
-    int msg_cap 
-    int time # iteration counter
 
-    train_data, test_data
-    X_test = test_data[:, :-1]
-    y_test = test_data[:, -1]
-    swarm = [] # array of jellyfish and their coordinates
-    ocean = Grid((self.grid_height, self.grid_width), self.msg_cap)
-    ocean.read(train_data)
-    int n_features 
-    int n_classes 
+#### _run_one_step
+```py
+"""
 
-
-    swarm = [
-        Metadata(Jellyfish(self.n_features, self.n_classes), \
-                gen_random_coord(self.grid_height, self.grid_width)) \
-
-
-    logger = [Logger(i, val.entity) for i, val in enumerate(self.swarm)]
-    eval_when = []
-    eval_mean = []
-    eval_std = []
-    agreement = [] # annotator's agreementＹ
-    
-    void run()
-    void _run_one_step()
-    void _validate()
-    void _transition()
-    void plot_individual_result()
-    void plot_swarm_result()
-    
+""" 
+def _run_one_step(verbose=False)
 ```
-}
+
+#### _validate
+```py
+"""
+
+
+Parameters
+----------
+step : 
+
+""" 
+def _validate(step)
+```
+
+#### _transition
+```py
+"""
+
+
+""" 
+def _transition()
+```
+
+#### plot_individual_result
+```py
+"""
+
+""" 
+def plot_individual_result()
+```
+
+#### plot_swarm_result
+```py
+"""
+
+""" 
+def plot_swarm_result()
+```
 
 
 
