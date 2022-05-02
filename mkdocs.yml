@@ -1,8 +1,12 @@
 site_name: Chironex Design Doc
 nav:
     - Home: index.md
-    - Usage: usage.md
-    - Design: design.md
+    - 'sklearn-estimators':
+      - 'Design': 'sklearn-estimators/sklearn-estimators-design.md'
+      - 'Usage': 'sklearn-estimators/sklearn-estimators-usage.md'
+    - 'jellyfish-system':
+      - 'Design': 'jellyfish-system/jellyfish-system-design.md'
+      - 'Usage': 'jellyfish-system/jellyfish-system-usage.md'
     - About: about.md
 theme: material
 markdown_extensions:
