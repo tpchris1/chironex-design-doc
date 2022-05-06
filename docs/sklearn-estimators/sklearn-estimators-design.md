@@ -1,5 +1,5 @@
 # Design Details of sklearn-estimators
- 
+
 ## class
 > 
 > 
