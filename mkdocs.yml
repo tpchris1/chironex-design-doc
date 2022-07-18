@@ -5,7 +5,13 @@ nav:
       - 'Design': 'sklearn-estimators/sklearn-estimators-design.md'
       - 'Usage': 'sklearn-estimators/sklearn-estimators-usage.md'
     - 'jellyfish-system':
-      - 'Design': 'jellyfish-system/jellyfish-system-design.md'
+      - 'Design': 
+        - 'Message': 'jellyfish-system/Design/Message.md'
+        - 'Cell': 'jellyfish-system/Design/Cell.md'
+        - 'Grid': 'jellyfish-system/Design/Grid.md'
+        - 'Learner': 'jellyfish-system/Design/Learner.md'
+        - 'Logger': 'jellyfish-system/Design/Logger.md'
+        - 'Engine': 'jellyfish-system/Design/Engine.md'
       - 'Usage': 'jellyfish-system/jellyfish-system-usage.md'
     - About: about.md
 theme: material
