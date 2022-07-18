@@ -10,9 +10,13 @@ nav:
         - 'Cell': 'jellyfish-system/Design/Cell.md'
         - 'Grid': 'jellyfish-system/Design/Grid.md'
         - 'Learner': 'jellyfish-system/Design/Learner.md'
+        - 'Jellyfish': 'jellyfish-system/Design/Jellyfish.md'
         - 'Logger': 'jellyfish-system/Design/Logger.md'
         - 'Engine': 'jellyfish-system/Design/Engine.md'
-      - 'Usage': 'jellyfish-system/jellyfish-system-usage.md'
+      - 'Usage': 
+        - 'Training and Plotting': 'jellyfish-system/Usage/Training and Plotting.md'
+        - "Integration with Atolla's environment": "jellyfish-system/Usage/Integration with Atolla's environment.md"
+
     - About: about.md
 theme: material
 markdown_extensions:

@@ -33,9 +33,22 @@ Furthermore, the resulting pre-trained jellyfish will be deployed into team Atol
 - For `sklearn-estimators`:
     - `Usage`: How to use sklearn-estimators
     - `Design`: The design implementation details with function descriptions and code
+
+!!! note
+    Currently `jellyfish-system` can be used on any classification problem
+
 - For `jellyfish-system`:
     - `Usage`: How to use Jellyfish system on classfication problems
+        - [Training and Plotting](jellyfish-system/Usage/Training%20and%20Plotting.md)
+        - [Integration with Atolla's environment](jellyfish-system/Usage/Integration%20with%20Atolla's%20environment.md)
     - `Design`: The design implementation details with function descriptions and code
+        - [Engine](jellyfish-system/Design/Engine.md): Engine class
+            - [Logger](jellyfish-system/Design/Logger.md): Logger class (used within Engine classs)
+        - [Jellyfish](jellyfish-system/Design/Jellyfish.md): Jellyfish class
+            - [Learner](jellyfish-system/Design/Learner.md): Learner class (used within Jellyfish class)
+        - [Grid](jellyfish-system/Design/Grid.md): Grid class
+            - [Cell](jellyfish-system/Design/Cell.md): Cell class
+                - [Message](jellyfish-system/Design/Message.md): Message class
 
 
 
