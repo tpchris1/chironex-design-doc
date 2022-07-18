@@ -1,0 +1,1041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+    
+    
+      
+        <title>Engine - Chironex Design Doc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.db9e7362.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#engine-class" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Chironex Design Doc" class="md-header__button md-logo" aria-label="Chironex Design Doc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Chironex Design Doc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Engine
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Chironex Design Doc" class="md-nav__button md-logo" aria-label="Chironex Design Doc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Chironex Design Doc
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          sklearn-estimators
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="sklearn-estimators" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          sklearn-estimators
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sklearn-estimators/sklearn-estimators-design/" class="md-nav__link">
+        Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sklearn-estimators/sklearn-estimators-usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          jellyfish-system
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="jellyfish-system" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          jellyfish-system
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Design" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Message/" class="md-nav__link">
+        Message
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cell/" class="md-nav__link">
+        Cell
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Grid/" class="md-nav__link">
+        Grid
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Learner/" class="md-nav__link">
+        Learner
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Jellyfish/" class="md-nav__link">
+        Jellyfish
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Logger/" class="md-nav__link">
+        Logger
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Engine
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Engine
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-variable" class="md-nav__link">
+    Class Variable
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Variable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-prameter" class="md-nav__link">
+    Class Prameter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_run_one_step" class="md-nav__link">
+    _run_one_step
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_validate" class="md-nav__link">
+    _validate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_transition" class="md-nav__link">
+    _transition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_individual_result" class="md-nav__link">
+    plot_individual_result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_swarm_result" class="md-nav__link">
+    plot_swarm_result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outside-class-functions" class="md-nav__link">
+    Outside class functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Outside class functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gen_random_coord" class="md-nav__link">
+    gen_random_coord
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shuffle_n_partition" class="md-nav__link">
+    shuffle_n_partition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Usage" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Usage/Training%20and%20Plotting/" class="md-nav__link">
+        Training and Plotting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Usage/Integration%20with%20Atolla%27s%20environment/" class="md-nav__link">
+        Integration with Atolla's environment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parameter" class="md-nav__link">
+    Parameter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-variable" class="md-nav__link">
+    Class Variable
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Variable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-prameter" class="md-nav__link">
+    Class Prameter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_run_one_step" class="md-nav__link">
+    _run_one_step
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_validate" class="md-nav__link">
+    _validate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_transition" class="md-nav__link">
+    _transition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_individual_result" class="md-nav__link">
+    plot_individual_result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_swarm_result" class="md-nav__link">
+    plot_swarm_result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outside-class-functions" class="md-nav__link">
+    Outside class functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Outside class functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gen_random_coord" class="md-nav__link">
+    gen_random_coord
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shuffle_n_partition" class="md-nav__link">
+    shuffle_n_partition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="engine-class">Engine class</h1>
+<blockquote>
+<ul>
+<li>Engine class </li>
+<li>The class to integrate all modules and execute the simulation process</li>
+<li>Instantiate all variables and run them through designated rounds</li>
+</ul>
+</blockquote>
+<h3 id="parameter">Parameter</h3>
+<ul>
+<li><code>grid_width</code>: int, width of the Grid</li>
+<li><code>grid_height</code>: int, height of the Grid </li>
+<li><code>max_iter</code>: int, number of training iterations</li>
+<li><code>n_jellyfish</code>: int, number of jellyfish </li>
+<li><code>msg_cap</code>: int, number of messages stored in the Message</li>
+<li><code>time</code>: int, iteration counter</li>
+<li><code>train_data</code>: training data</li>
+<li><code>test_data</code>: test data</li>
+<li><code>X_test</code>: test data attribute</li>
+<li><code>y_test</code>: test data label </li>
+<li><code>swarm</code> : array, array of jellyfish and their coordinates</li>
+<li><code>ocean</code> : Grid</li>
+<li><code>n_features</code>: int, number of features of training data </li>
+<li><code>n_classes</code>: int, number of classes of training data </li>
+<li><code>eval_every</code>: int, number of iteration per evaluation </li>
+<li><code>logger</code>: Logger object, combine logging information to print </li>
+<li><code>eval_when</code>: int, evaluation rounds </li>
+<li><code>eval_mean</code>: float, mean of accuracy</li>
+<li><code>eval_std</code>: float, standard deviation of accuracy  </li>
+<li><code>agreement</code> : array, store annotator's agreement</li>
+</ul>
+<h3 id="class-variable">Class Variable</h3>
+<ul>
+<li><code>Metadata</code>: class, Data structure to for the jellyfish entity and its coordinate</li>
+</ul>
+<h4 id="class-prameter">Class Prameter</h4>
+<ul>
+<li><code>entity</code>: Jellyfish object, entity of the Jellyfish object</li>
+<li><code>coord</code>: tuple of int, coordinate of the Jellyfish</li>
+</ul>
+<h3 id="functions">Functions</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>_</code> prefix for functions are subroutine.</p>
+</div>
+<h4 id="run">run</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Run the simulation</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">verbose : bool</span>
+<span class="sd">    Set to true to print more info</span>
+
+<span class="sd">Return </span>
+<span class="sd">----------</span>
+<span class="sd">None</span>
+<span class="sd">&quot;&quot;&quot;</span> 
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="_run_one_step">_run_one_step</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Run one step of simulation, subroutine of function `run`</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">verbose : bool</span>
+<span class="sd">    Set to true to log out more info</span>
+
+<span class="sd">Return</span>
+<span class="sd">----------</span>
+<span class="sd">None</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">_run_one_step</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="_validate">_validate</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Validate the swarm by calculating the following metric</span>
+<span class="sd">    1. Annotator&#39;s agreement</span>
+<span class="sd">    2. Mean of accuracy</span>
+<span class="sd">    3. Standard deviation of accuracy</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">step : int</span>
+<span class="sd">    Current round index</span>
+
+<span class="sd">Return</span>
+<span class="sd">----------</span>
+<span class="sd">None</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="_transition">_transition</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Define how coordinate changes, in place update</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+
+<span class="sd">Return</span>
+<span class="sd">----------</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">_transition</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="plot_individual_result">plot_individual_result</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plot each of individual Jellyfish&#39;s validation accuracy</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+
+<span class="sd">Return</span>
+<span class="sd">----------</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">plot_individual_result</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="plot_swarm_result">plot_swarm_result</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plot the swarm&#39;s mean and std validation accuracy</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+
+<span class="sd">Return</span>
+<span class="sd">----------</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">plot_swarm_result</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="outside-class-functions">Outside class functions</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Functions not defined in the Engine class but are used within Engine class</p>
+</div>
+<h4 id="gen_random_coord">gen_random_coord</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Generate a random 2d coordinate</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">x_boundary : int</span>
+<span class="sd">    Range of x is [0, x_boundary)</span>
+<span class="sd">y_boundary: int</span>
+<span class="sd">    Range of y is [0, y_boundary)</span>
+
+<span class="sd">Return</span>
+<span class="sd">----------</span>
+<span class="sd">(x_coord, y_coord) : tuple</span>
+<span class="sd">    2d coordinate</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">gen_random_coord</span><span class="p">(</span><span class="n">x_boundary</span><span class="p">,</span> <span class="n">y_boundary</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="shuffle_n_partition">shuffle_n_partition</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Shuffle and divide the dataset into training and validation set</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">dataset : dataframe</span>
+<span class="sd">    Target dataset</span>
+<span class="sd">test_size : int or float</span>
+<span class="sd">    If data type is int, then |validation set| = test_size</span>
+<span class="sd">    Else if data type is float, then |validation set| = int(|dataset| * test_size)</span>
+<span class="sd">normalize: bool</span>
+<span class="sd">    Whether to normalize values for a feature</span>
+<span class="sd">random_state: int</span>
+<span class="sd">    Random seed</span>
+
+<span class="sd">Return</span>
+<span class="sd">----------</span>
+<span class="sd">train, test : tuple</span>
+<span class="sd">    Training and validation set</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">shuffle_n_partition</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> 
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Logger/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Logger" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Logger
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../Usage/Training%20and%20Plotting/" class="md-footer__link md-footer__link--next" aria-label="Next: Training and Plotting" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Training and Plotting
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      
+    
+  </body>
+</html>
